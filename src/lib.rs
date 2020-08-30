@@ -4,6 +4,7 @@ extern crate serde_json;
 
 mod components;
 mod model;
+mod repo;
 
 use wasm_bindgen::prelude::*;
 
