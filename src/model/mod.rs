@@ -1,7 +1,11 @@
+mod entry_button;
+
+pub use entry_button::EntryButtonCollection;
+
 use chrono::prelude::*;
 use serde_derive::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct GratitudeList {
     entries: Vec<Entry>,
 }
@@ -54,6 +58,10 @@ impl GratitudeList {
 }
 
 impl DefaultEmoji {
+    pub fn all() -> Vec<DefaultEmoji> {
+        vec![DefaultEmoji::Sun, DefaultEmoji::RedHeart]
+    }
+
     pub fn instance(&self) -> Emoji {
         match self {
             DefaultEmoji::Sun => Emoji("🌞".to_string()),
