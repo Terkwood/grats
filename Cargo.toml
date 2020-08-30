@@ -4,8 +4,8 @@ description = "Make a gratitude list using browser local storage"
 edition = "2018"
 license = "MIT"
 name = "grats"
-repository = "https://github.com/Terkwood/coffee"
-version = "0.0.0"
+repository = "https://github.com/Terkwood/grats"
+version = "0.1.0-a"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

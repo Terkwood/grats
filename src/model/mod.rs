@@ -8,16 +8,21 @@ pub struct GratitudeList {
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, PartialOrd, Ord, Eq)]
 pub struct Entry {
-    pub epoch_millis_utc: u64,
-    pub entry_type: EntryType,
+    pub time: UtcMillis,
+    pub emoji: Emoji,
     pub text: String,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, PartialOrd, Ord, Eq)]
-pub struct EntryType {
-    pub name: String,
-    pub emoji: String,
+pub struct Emoji(String);
+
+pub enum DefaultEmoji {
+    Sun,
+    RedHeart,
 }
+
+#[derive(Debug, Copy, Clone, PartialEq, PartialOrd, Ord, Eq, Serialize, Deserialize)]
+pub struct UtcMillis(pub u64);
 
 impl GratitudeList {
     pub fn empty() -> Self {
@@ -33,7 +38,7 @@ impl GratitudeList {
             .entries
             .iter()
             .filter(|entry| {
-                Utc.timestamp_millis(entry.epoch_millis_utc as i64)
+                Utc.timestamp_millis(entry.time.0 as i64)
                     .with_timezone(&offset)
                     .date()
                     == local_now_date
@@ -48,5 +53,11 @@ impl GratitudeList {
     }
 }
 
-#[derive(Debug, Copy, Clone, PartialEq)]
-pub struct UtcMillis(pub u64);
+impl DefaultEmoji {
+    pub fn instance(&self) -> Emoji {
+        match self {
+            DefaultEmoji::Sun => Emoji("🌞".to_string()),
+            DefaultEmoji::RedHeart => todo!(),
+        }
+    }
+}
