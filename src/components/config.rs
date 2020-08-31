@@ -45,7 +45,7 @@ impl Component for Config {
     }
 }
 
-const REPO_URL: &str = "https://github.com/Terkwood/inventory";
+const REPO_URL: &str = "https://github.com/Terkwood/grats";
 impl Config {
     fn view_export(&self) -> Html {
         html! {
@@ -72,8 +72,8 @@ impl Config {
         html! {
             <div class="configsection">
                 <h1>{ "About" }</h1>
-                <p>{ "INVENTORY helps you track Fourth and Tenth Step inventories used in Twelve Step programs." }</p>
-                <p>{ "INVENTORY is designed with privacy in mind.  Your data will never be transmitted to a third party.  Data is kept in browser local storage, unencypted.  KEEP YOUR DATA SAFE: make sure there is no malware on your system!" }</p>
+                <p>{ "GRATS helps you make a list of things which bring you joy." }</p>
+                <p>{ "GRATS is designed with privacy in mind.  Your data will never be transmitted to a third party.  Data is kept in browser local storage, unencypted.  KEEP YOUR DATA SAFE: make sure there is no malware on your system!" }</p>
                 <h2>{ "Source Code" }</h2>
                 <p>{ "The source code is available under MIT license." }</p>
                 <p><a href=REPO_URL>{ REPO_URL }</a></p>
