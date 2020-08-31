@@ -11,14 +11,11 @@ pub struct Props {
     pub entry_buttons: EntryButtonCollection,
     pub add_entry_button: Callback<Emoji>,
     pub del_entry_button: Callback<Emoji>,
-    pub show_nav: Callback<bool>,
 }
 
 pub enum Msg {
     AddButton(Emoji),
     DelButton(Emoji),
-    NothingHappened,
-    ShowNav(bool),
 }
 
 impl Component for EntryButtonsView {
@@ -34,16 +31,10 @@ impl Component for EntryButtonsView {
         match msg {
             Msg::AddButton(emoji) => {
                 self.props.add_entry_button.emit(emoji);
-                self.props.show_nav.emit(true);
                 true
             }
             Msg::DelButton(emoji) => {
                 self.props.del_entry_button.emit(emoji);
-                true
-            }
-            Msg::NothingHappened => false,
-            Msg::ShowNav(b) => {
-                self.props.show_nav.emit(b);
                 true
             }
         }

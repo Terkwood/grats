@@ -75,3 +75,23 @@ textarea {
   grid-template: repeat(9, 1fr) / repeat(2, 1fr);
   grid-auto-flow: row;
 }
+
+
+.configsection {
+  margin: 2vh;
+}
+
+.configsection p {
+  width: fit-content;
+  word-wrap: normal;
+}
+
+.emojiselection {
+  font-size: 10vw;
+}
+
+.delete_entry_button {
+  font-size: 4vw;
+  height: 90%;
+  margin-left: 1vh;
+}

@@ -137,7 +137,6 @@ impl App {
                 gratitude_list={self.gratitude_list.clone()}
                 add_entry_button={self.add_entry_button.as_ref().expect("add inv button cb")}
                 del_entry_button={self.del_entry_button.as_ref().expect("del button cb")}
-                show_nav={self.show_nav.as_ref().expect("show nav cb")}
             />
         }
     }

@@ -1,6 +1,5 @@
 use super::EntryButtonsView;
 use crate::model::*;
-use crate::time::js_utc_now;
 use yew::prelude::*;
 
 pub struct Config {
@@ -14,7 +13,6 @@ pub struct Props {
     pub gratitude_list: GratitudeList,
     pub add_entry_button: Callback<Emoji>,
     pub del_entry_button: Callback<Emoji>,
-    pub show_nav: Callback<bool>,
 }
 
 impl Component for Config {
@@ -63,7 +61,6 @@ impl Config {
                 entry_buttons=self.props.entry_buttons.clone()
                 add_entry_button=self.props.add_entry_button.clone()
                 del_entry_button=self.props.del_entry_button.clone()
-                show_nav=self.props.show_nav.clone()
             />
         }
     }
