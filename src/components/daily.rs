@@ -26,7 +26,6 @@ pub struct Props {
     pub gratitude_list: GratitudeList,
     pub entry_buttons: EntryButtonCollection,
     pub add_entry: Callback<Entry>,
-    pub resolve_item: Callback<UtcMillis>,
     pub show_nav: Callback<bool>,
 }
 

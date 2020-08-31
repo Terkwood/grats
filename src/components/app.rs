@@ -1,6 +1,7 @@
-use super::Page;
+use super::*;
 use crate::model::*;
 use crate::repo::*;
+use crate::time::{js_local_offset, js_utc_now};
 use yew::prelude::*;
 
 pub struct App {
@@ -12,6 +13,14 @@ pub struct App {
     entry_buttons: EntryButtonCollection,
 
     nav_state: NavState,
+
+    nav_to: Option<Callback<Page>>,
+    show_nav: Option<Callback<bool>>,
+
+    add_entry: Option<Callback<Entry>>,
+
+    add_entry_button: Option<Callback<Emoji>>,
+    del_entry_button: Option<Callback<Emoji>>,
 }
 
 pub enum Msg {
@@ -36,6 +45,11 @@ impl Component for App {
         let nav_to = Some(link.callback(|page| Msg::NavigateTo(page)));
         let show_nav = Some(link.callback(|b| Msg::ShowNav(b)));
 
+        let add_entry = Some(link.callback(|entry| Msg::AddEntry(entry)));
+
+        let add_entry_button = Some(link.callback(|emoji| Msg::AddEntryButton(emoji)));
+        let del_entry_button = Some(link.callback(|emoji| Msg::DeleteEntryButton(emoji)));
+
         let gratitude_list_repo = GratitudeListRepo::new();
         let gratitude_list = gratitude_list_repo.read();
 
@@ -49,6 +63,11 @@ impl Component for App {
             gratitude_list,
             entry_buttons_repo,
             entry_buttons,
+            nav_to,
+            show_nav,
+            add_entry,
+            add_entry_button,
+            del_entry_button,
         }
     }
 
@@ -80,10 +99,62 @@ impl Component for App {
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        todo!()
+        false
     }
 
     fn view(&self) -> Html {
+        html! {
+            <>
+            {
+                match self.page {
+                    Page::Daily => self.view_daily(),
+                    Page::History => { html! { <div>{ "🚧 COMING SOON 🚧" }</div>} },
+                    Page::Config => self.view_config(),
+                }
+            }
+            { self.view_nav() }
+            </>
+        }
+    }
+}
+
+impl App {
+    fn view_daily(&self) -> Html {
+        html! {
+            <Daily
+                gratitude_list={self.gratitude_list.today(js_utc_now(), js_local_offset())}
+                add_entry={self.add_entry.as_ref().expect("add entry cb")}
+                entry_buttons={self.entry_buttons.clone()}
+                show_nav={self.show_nav.as_ref().expect("show nav cb")}
+            />
+        }
+    }
+
+    fn view_config(&self) -> Html {
+        /*
+        html! {
+            <Config
+                inventory_buttons={self.buttons.clone()}
+                inventory={self.inventory.clone()}
+                add_inventory_button={self.add_inventory_button.as_ref().expect("add inv button cb")}
+                del_inventory_button={self.del_inventory_button.as_ref().expect("del button cb")}
+                show_nav={self.show_nav.as_ref().expect("show nav cb")}
+            />
+        }*/
+        todo!()
+    }
+
+    fn view_nav(&self) -> Html {
+        /*if self.nav_state == NavState::Visible {
+            html! {
+                <Nav
+                    page={self.page}
+                    nav_to={self.nav_to.as_ref().expect("nav cb")}
+                />
+            }
+        } else {
+            html! { <></> }
+        }*/
         todo!()
     }
 }
