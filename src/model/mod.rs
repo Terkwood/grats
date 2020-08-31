@@ -65,7 +65,7 @@ impl DefaultEmoji {
     pub fn instance(&self) -> Emoji {
         match self {
             DefaultEmoji::Sun => Emoji("🌞".to_string()),
-            DefaultEmoji::RedHeart => todo!(),
+            DefaultEmoji::RedHeart => Emoji("❤️".to_string()),
         }
     }
 }

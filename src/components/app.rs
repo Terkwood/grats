@@ -155,6 +155,6 @@ impl App {
         } else {
             html! { <></> }
         }*/
-        todo!()
+        html! {<div>{ "TODO NAV" }</div>}
     }
 }
