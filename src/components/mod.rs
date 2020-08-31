@@ -1,9 +1,13 @@
 mod app;
+mod config;
 mod daily;
+mod entry_buttons_view;
 mod nav;
 
 pub use app::App;
+pub use config::Config;
 pub use daily::Daily;
+pub use entry_buttons_view::EntryButtonsView;
 pub use nav::Nav;
 
 #[derive(Copy, Clone, PartialEq, Debug)]

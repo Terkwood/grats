@@ -131,17 +131,15 @@ impl App {
     }
 
     fn view_config(&self) -> Html {
-        /*
         html! {
             <Config
-                inventory_buttons={self.buttons.clone()}
-                inventory={self.inventory.clone()}
-                add_inventory_button={self.add_inventory_button.as_ref().expect("add inv button cb")}
-                del_inventory_button={self.del_inventory_button.as_ref().expect("del button cb")}
+                entry_buttons={self.entry_buttons.clone()}
+                gratitude_list={self.gratitude_list.clone()}
+                add_entry_button={self.add_entry_button.as_ref().expect("add inv button cb")}
+                del_entry_button={self.del_entry_button.as_ref().expect("del button cb")}
                 show_nav={self.show_nav.as_ref().expect("show nav cb")}
             />
-        }*/
-        todo!()
+        }
     }
 
     fn view_nav(&self) -> Html {
