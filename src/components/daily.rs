@@ -95,7 +95,7 @@ impl Daily {
         } else {
             "inputgridwaiting"
         };
-        /*html! {
+        html! {
             <div id=input_grid_id>
                 <div id="bigtextgrid">
                     <textarea
@@ -105,12 +105,14 @@ impl Daily {
                         placeholder="What are you grateful for?">
                     </textarea>
                 </div>
-                { self.props.inventory_buttons.all().iter().map(|item_type| self.view_inventory_button(item_type)).collect::<Html>()}
+                { self.props.entry_buttons.all().iter().map(|emoji| self.view_entry_button(emoji)).collect::<Html>()}
             </div>
-        }*/
-        todo!()
+        }
     }
     fn view_todays_list(&self) -> Html {
+        todo!()
+    }
+    fn view_entry_button(&self, emoji: &Emoji) -> Html {
         todo!()
     }
 }
