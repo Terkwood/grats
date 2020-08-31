@@ -101,13 +101,17 @@ impl EntryButtonsView {
 
         let emc = emoji.clone();
         html! {
-            <li>
-            { emoji.0.clone() }
-            { if can_delete {
-                html! { <button class="delete_entry_button" onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}> { "DELETE 🗑" } </button>}
-            } else {
-                html! { <></> }
-            }}
+            <li id="current_entry_buttons">
+                { emoji.0.clone() }
+                {
+                    if can_delete {
+                        html! { <button
+                                    class="delete_entry_button"
+                                    onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}> { "DELETE 🗑" } </button>                                }
+                    } else {
+                        html! { <></> }
+                    }
+                }
             </li>
         }
     }

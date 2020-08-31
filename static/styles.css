@@ -11,6 +11,10 @@ textarea {
   font-size: 5vw;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .center {
   text-align: center;
 }
@@ -85,6 +89,10 @@ textarea {
 }
 
 .emojiselection {
+  font-size: 10vw;
+}
+
+#current_entry_buttons {
   font-size: 10vw;
 }
 
