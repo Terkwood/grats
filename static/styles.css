@@ -29,6 +29,11 @@ textarea {
   list-style-type: none;
 }
 
+.entry {
+  font-size: 5vw;
+  margin: 1vh;
+}
+
 #inputgridwaiting {
   height: 35vh;
   display: grid;

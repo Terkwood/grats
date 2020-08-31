@@ -120,7 +120,7 @@ impl Daily {
     }
     fn view_entry(&self, entry: Entry) -> Html {
         html! {
-            <li class="inventoryitem">
+            <li class="entry">
                 { format!("{} {} " , entry.emoji.0, entry.text) }
             </li>
         }
