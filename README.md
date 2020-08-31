@@ -12,4 +12,4 @@ All data is stored in [browser localstorage](https://developer.mozilla.org/en-US
 
 Users who are familiar with the rust programming language (at any level) are encouraged to browse the source and verify the program's functionality.
 
-The data stored on your device to help track your caffeine levels is stored in an _unencypted_ format. So you still need to be careful that you don't get malware on your device, because it's theoretically possible that some Evil Hacker might be really interested in your caffeine intake and steal those records. Always run anti-virus scans and follow recommendations for basic internet safety!
+The gratitude list is written to your device in an _unencypted_ format. Always run anti-virus scans and follow recommendations for basic internet safety!
