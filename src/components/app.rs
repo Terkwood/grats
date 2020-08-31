@@ -145,7 +145,7 @@ impl App {
     }
 
     fn view_nav(&self) -> Html {
-        /*if self.nav_state == NavState::Visible {
+        if self.nav_state == NavState::Visible {
             html! {
                 <Nav
                     page={self.page}
@@ -154,7 +154,6 @@ impl App {
             }
         } else {
             html! { <></> }
-        }*/
-        html! {<div>{ "TODO NAV" }</div>}
+        }
     }
 }

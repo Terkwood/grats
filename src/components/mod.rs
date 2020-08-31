@@ -1,8 +1,10 @@
 mod app;
 mod daily;
+mod nav;
 
 pub use app::App;
 pub use daily::Daily;
+pub use nav::Nav;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
 pub enum Page {
