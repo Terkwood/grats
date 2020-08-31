@@ -7,7 +7,7 @@ use serde_derive::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct GratitudeList {
-    entries: Vec<Entry>,
+    pub entries: Vec<Entry>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, PartialOrd, Ord, Eq)]
@@ -18,7 +18,7 @@ pub struct Entry {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, PartialOrd, Ord, Eq)]
-pub struct Emoji(String);
+pub struct Emoji(pub String);
 
 pub enum DefaultEmoji {
     Sun,

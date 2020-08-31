@@ -20,6 +20,15 @@ textarea {
   grid-row: 1 / span 5;
 }
 
+#gratitude {
+  text-align: left;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+}
+
 #inputgridwaiting {
   height: 35vh;
   display: grid;

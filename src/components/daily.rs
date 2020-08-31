@@ -110,7 +110,20 @@ impl Daily {
         }
     }
     fn view_todays_list(&self) -> Html {
-        todo!()
+        html! {
+            <div class="center">
+                <ul id="gratitude">
+                    { self.props.gratitude_list.entries.iter().map(|entry| self.view_entry(entry.clone())).collect::<Html>() }
+                </ul>
+            </div>
+        }
+    }
+    fn view_entry(&self, entry: Entry) -> Html {
+        html! {
+            <li class="inventoryitem">
+                { format!("{} {} " , entry.emoji.0, entry.text) }
+            </li>
+        }
     }
     fn view_entry_button(&self, emoji: &Emoji) -> Html {
         todo!()
