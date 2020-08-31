@@ -126,6 +126,21 @@ impl Daily {
         }
     }
     fn view_entry_button(&self, emoji: &Emoji) -> Html {
-        todo!()
+        let emc = emoji.clone();
+        let emc2 = emoji.clone();
+        html! {
+            <div class="center">
+                    <button
+                        class="bigbutton"
+                        onclick=
+                            self.link
+                                .callback(
+                                    move |_| Msg::SubmitEntry(
+                                        emc.clone()
+                                    ))>
+                        { emc2.0 }
+                    </button>
+                </div>
+        }
     }
 }

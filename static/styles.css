@@ -34,6 +34,12 @@ textarea {
   margin: 1vh;
 }
 
+.bigbutton {
+  font-size: 4vw;
+  height: 90%;
+  width: 85%;
+}
+
 #inputgridwaiting {
   height: 35vh;
   display: grid;
