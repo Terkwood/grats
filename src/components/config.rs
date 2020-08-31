@@ -48,8 +48,8 @@ impl Config {
     fn view_export(&self) -> Html {
         html! {
             <div class="configsection">
-                <h1>{ "Export Data"}</h1>
-                <p>{ "Use this button to save your data to a file on your device." }</p>
+                <h1>{ "🚧 Export Data 🚧"}</h1>
+                <p>{ "🚧🚧🚧🚧🚧🚧🚧 Click to save your data to a file on your device." }</p>
                 <div>{ "🚧 COMING SOON 🚧" }</div>
             </div>
         }
