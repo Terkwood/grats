@@ -10,7 +10,7 @@ pub struct Daily {
 }
 
 pub enum Msg {
-    SubmitItem(Emoji),
+    SubmitEntry(Emoji),
     TextAreaUpdated(String),
     FocusInput,
 }
@@ -36,11 +36,37 @@ impl Component for Daily {
     type Properties = Props;
 
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        todo!()
+        Self {
+            props,
+            link,
+            text_area: String::new(),
+            mode: Mode::Default,
+        }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        todo!()
+        match msg {
+            Msg::FocusInput => {
+                self.mode = Mode::Input;
+                self.props.show_nav.emit(false)
+            }
+            Msg::TextAreaUpdated(text) => self.text_area = text,
+            Msg::SubmitEntry(emoji) => {
+                self.mode = Mode::Default;
+                self.props.show_nav.emit(true);
+                if !self.text_area.is_empty() {
+                    self.props.add_entry.emit(Entry {
+                        emoji,
+                        text: self.text_area.clone(),
+                        time: js_utc_now(),
+                    });
+
+                    self.text_area.clear()
+                };
+            }
+        }
+
+        true
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {

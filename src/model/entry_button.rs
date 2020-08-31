@@ -28,7 +28,10 @@ impl EntryButtonCollection {
     }
 
     pub fn allowed_emojis() -> Vec<String> {
-        vec!["🥳", "🤩"].iter().map(|s| s.to_string()).collect()
+        vec!["🥳", "🤩", "🌈", "😁"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect()
     }
 
     pub fn add(&mut self, button: Emoji) -> ButtonAddResult {
