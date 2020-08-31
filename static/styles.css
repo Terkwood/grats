@@ -1,0 +1,103 @@
+body {
+  background-color: black;
+  color: lightgrey;
+  font-size: 3vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+  width: 100%;
+  height: 95%;
+  font-size: 5vw;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.center {
+  text-align: center;
+}
+
+#bigtextgrid {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 5;
+}
+
+#gratitude {
+  text-align: left;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  list-style-type: none;
+}
+
+.entry {
+  font-size: 5vw;
+  margin: 1vh;
+}
+
+.bigbutton {
+  font-size: 4vw;
+  height: 90%;
+  width: 85%;
+}
+
+.navbutton {
+  font-size: 5vh;
+}
+
+.bottomright {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.bottomleft {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#inputgridwaiting {
+  height: 35vh;
+  display: grid;
+  grid-gap: 5px;
+  grid-template: repeat(8, 1fr) / repeat(2, 1fr);
+  grid-auto-flow: row;
+}
+
+#inputgridfocus {
+  height: 80vh;
+  display: grid;
+  grid-gap: 5px;
+  /** Yes, we added one row! */
+  grid-template: repeat(9, 1fr) / repeat(2, 1fr);
+  grid-auto-flow: row;
+}
+
+.configsection {
+  margin: 2vh;
+}
+
+.configsection p {
+  width: fit-content;
+  word-wrap: normal;
+}
+
+.emojiselection {
+  font-size: 10vw;
+}
+
+#current_entry_buttons {
+  font-size: 10vw;
+}
+
+.delete_entry_button {
+  font-size: 4vw;
+  height: 90%;
+  margin-left: 1vh;
+}
