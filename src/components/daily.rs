@@ -79,6 +79,38 @@ impl Component for Daily {
     }
 
     fn view(&self) -> Html {
+        html! {
+            <>
+                { self.view_input() }
+                { self.view_todays_list() }
+            </>
+        }
+    }
+}
+
+impl Daily {
+    pub fn view_input(&self) -> Html {
+        let input_grid_id = if self.mode == Mode::Input {
+            "inputgridfocus"
+        } else {
+            "inputgridwaiting"
+        };
+        /*html! {
+            <div id=input_grid_id>
+                <div id="bigtextgrid">
+                    <textarea
+                        value=&self.text_area
+                        onfocus=self.link.callback(|_| Msg::FocusInput)
+                        oninput=self.link.callback(|e: InputData| Msg::TextAreaUpdated(e.value))
+                        placeholder="What are you grateful for?">
+                    </textarea>
+                </div>
+                { self.props.inventory_buttons.all().iter().map(|item_type| self.view_inventory_button(item_type)).collect::<Html>()}
+            </div>
+        }*/
+        todo!()
+    }
+    fn view_todays_list(&self) -> Html {
         todo!()
     }
 }
