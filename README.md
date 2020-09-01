@@ -1,4 +1,4 @@
-# grats 🥳
+# Grats 🌞
 
 Make a gratitude list and keep it private on your device 🔏
 
