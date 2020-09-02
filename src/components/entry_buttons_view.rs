@@ -79,7 +79,7 @@ impl EntryButtonsView {
             .iter()
             .map(|emoji|{ let e = emoji.clone();
             html! {
-                <button class="emojiselection" onclick={self.link.callback(move |_| Msg::AddButton(Emoji(e.clone())))}>{ emoji }</button>
+                <button class="big" onclick={self.link.callback(move |_| Msg::AddButton(Emoji(e.clone())))}>{ emoji }</button>
             }})
             .collect::<Html>()
     }
@@ -101,7 +101,7 @@ impl EntryButtonsView {
 
         let emc = emoji.clone();
         html! {
-            <li id="current_entry_buttons">
+            <li class="big">
                 { emoji.0.clone() }
                 {
                     if can_delete {

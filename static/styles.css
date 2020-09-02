@@ -19,11 +19,6 @@ ul {
   text-align: center;
 }
 
-#bigtextgrid {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 5;
-}
-
 #gratitude {
   text-align: left;
   display: -moz-inline-stack;
@@ -38,10 +33,9 @@ ul {
   margin: 1vh;
 }
 
-.bigbutton {
-  font-size: 4vw;
-  height: 90%;
-  width: 85%;
+.entrybutton {
+  font-size: 10vmin;
+  height: 100%;
 }
 
 .navbutton {
@@ -63,10 +57,9 @@ ul {
 }
 
 #inputgridwaiting {
-  height: 35vh;
+  height: 28vh;
   display: grid;
   grid-gap: 5px;
-  grid-template: repeat(8, 1fr) / repeat(2, 1fr);
   grid-auto-flow: row;
 }
 
@@ -74,8 +67,6 @@ ul {
   height: 80vh;
   display: grid;
   grid-gap: 5px;
-  /** Yes, we added one row! */
-  grid-template: repeat(9, 1fr) / repeat(2, 1fr);
   grid-auto-flow: row;
 }
 
@@ -88,11 +79,7 @@ ul {
   word-wrap: normal;
 }
 
-.emojiselection {
-  font-size: 10vw;
-}
-
-#current_entry_buttons {
+.big {
   font-size: 10vw;
 }
 

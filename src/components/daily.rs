@@ -87,16 +87,23 @@ impl Component for Daily {
     }
 }
 
+const GRID_TEMPLATE_ROWS_WAITING: u8 = 6;
+const GRID_TEMPLATE_ROWS_FOCUS: u8 = 7;
+
 impl Daily {
     pub fn view_input(&self) -> Html {
-        let input_grid_id = if self.mode == Mode::Input {
-            "inputgridfocus"
+        let entry_buttons = self.props.entry_buttons.all();
+        let (input_grid_id, input_grid_rows) = if self.mode == Mode::Input {
+            ("inputgridfocus", GRID_TEMPLATE_ROWS_FOCUS)
         } else {
-            "inputgridwaiting"
+            ("inputgridwaiting", GRID_TEMPLATE_ROWS_WAITING)
         };
         html! {
-            <div id=input_grid_id>
-                <div id="bigtextgrid">
+            <div
+                id=input_grid_id
+                style=format!("grid-template: repeat({}, 1fr) / repeat({}, 1fr);", input_grid_rows, entry_buttons.len())
+                >
+                <div style=format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)>
                     <textarea
                         value=&self.text_area
                         onfocus=self.link.callback(|_| Msg::FocusInput)
@@ -104,7 +111,7 @@ impl Daily {
                         placeholder="What are you grateful for?">
                     </textarea>
                 </div>
-                { self.props.entry_buttons.all().iter().map(|emoji| self.view_entry_button(emoji)).collect::<Html>()}
+                { entry_buttons.iter().map(|emoji| self.view_entry_button(emoji)).collect::<Html>()}
             </div>
         }
     }
@@ -130,7 +137,7 @@ impl Daily {
         html! {
             <div class="center">
                     <button
-                        class="bigbutton"
+                        class="entrybutton"
                         onclick=
                             self.link
                                 .callback(
