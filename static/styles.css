@@ -3,7 +3,6 @@ body {
   color: lightgrey;
   font-size: 3vw;
   font-family: Arial, Helvetica, sans-serif;
-  word-wrap: break-word;
 }
 
 textarea {
@@ -27,10 +26,11 @@ ul {
   zoom: 1;
   *display: inline;
   list-style-type: none;
+
   white-space: pre-line;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  width: 100%;
+  width: 100%; /* Required for breaking of long strings without whitespace */
 }
 
 .entry {
