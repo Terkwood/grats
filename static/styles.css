@@ -3,6 +3,7 @@ body {
   color: lightgrey;
   font-size: 3vw;
   font-family: Arial, Helvetica, sans-serif;
+  word-wrap: break-word;
 }
 
 textarea {
