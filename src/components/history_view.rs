@@ -30,6 +30,6 @@ impl Component for HistoryView {
     }
 
     fn view(&self) -> Html {
-        todo!()
+        html! {}
     }
 }
