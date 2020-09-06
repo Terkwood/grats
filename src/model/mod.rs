@@ -1,7 +1,8 @@
 mod entry_button;
-mod history;
+pub mod history;
 
 pub use entry_button::EntryButtonCollection;
+pub use history::History;
 
 use chrono::prelude::*;
 use serde_derive::{Deserialize, Serialize};

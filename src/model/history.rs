@@ -2,13 +2,13 @@ use crate::model::GratitudeList;
 use chrono::prelude::*;
 use group_by::group_by;
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct History {
     pub days: Vec<Day>,
     pub offset: FixedOffset,
 }
 
-#[derive(Ord, Eq, PartialOrd, PartialEq, Debug)]
+#[derive(Ord, Eq, PartialOrd, PartialEq, Debug, Clone)]
 pub struct Day {
     pub date: Date<FixedOffset>,
     pub gratitude_list: GratitudeList,
