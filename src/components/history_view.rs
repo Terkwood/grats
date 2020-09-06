@@ -61,6 +61,22 @@ impl Component for HistoryView {
 
 impl HistoryView {
     fn view_day(&self, day: &history::Day) -> Html {
-        todo!()
+        html! {
+            <div>
+                <h1>{ day.date.format("%A, %b %e, %Y") }</h1>
+                <ul>{ day.gratitude_list.entries.iter().map(|entry| self.view_entry(entry)).collect::<Html>() }</ul>
+            </div>
+        }
+    }
+
+    fn view_entry(&self, entry: &Entry) -> Html {
+        let dt = todo!(); //js_local_datetime(e.timestamp());
+        let date_string: String = todo!(); //dt.format("%m/%d %R").to_string();
+
+        html! {
+            <li class="gratitude_list_entry">
+                { format!("{} [{}] {} " , entry.emoji.0, date_string, entry.text) }
+            </li>
+        }
     }
 }
