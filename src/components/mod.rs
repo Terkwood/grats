@@ -2,6 +2,7 @@ mod app;
 mod config;
 mod daily;
 mod entry_buttons_view;
+mod history_view;
 mod nav;
 
 pub use app::App;

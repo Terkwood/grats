@@ -64,8 +64,8 @@ mod test {
     #[test]
     fn test_grouping() {
         let size = 10;
-        let inventory = list_with(size);
-        let history = History::from(&inventory, FixedOffset::west(LOCAL_OFFSET_SECONDS));
+        let list = list_with(size);
+        let history = History::from(&list, FixedOffset::west(LOCAL_OFFSET_SECONDS));
 
         assert_eq!(history.days.len(), size as usize);
         for day in history.days {
@@ -77,8 +77,8 @@ mod test {
     #[test]
     fn test_from_order() {
         let size = 3;
-        let inventory = list_with(3);
-        let history = History::from(&inventory, FixedOffset::west(LOCAL_OFFSET_SECONDS));
+        let list = list_with(3);
+        let history = History::from(&list, FixedOffset::west(LOCAL_OFFSET_SECONDS));
 
         for i in 0..(size - 1) {
             let this_date = history.days[i].date;
