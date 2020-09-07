@@ -66,7 +66,7 @@ impl HistoryView {
         html! {
             <div>
                 <h1>{ day.date.format("%A, %b %e, %Y") }</h1>
-                <ul>{ day.gratitude_list.entries.iter().map(|entry| self.view_entry(entry)).collect::<Html>() }</ul>
+                <ul class="gratitude">{ day.gratitude_list.entries.iter().map(|entry| self.view_entry(entry)).collect::<Html>() }</ul>
             </div>
         }
     }

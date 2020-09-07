@@ -118,7 +118,7 @@ impl Daily {
     fn view_todays_list(&self) -> Html {
         html! {
             <div class="center">
-                <ul id="gratitude">
+                <ul class="gratitude">
                     { self.props.gratitude_list.entries.iter().map(|entry| self.view_entry(entry.clone())).collect::<Html>() }
                 </ul>
             </div>
