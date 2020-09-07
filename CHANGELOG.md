@@ -1,9 +1,15 @@
 # CHANGELOG
 
-## v0.1.2
+Changes to the app, most recent first.
 
-- Force word-wrap on long strings without whitespace #15, #17
+## v0.2.1
+
+Word-wrap the history view.
 
 ## v0.2.0
 
-- Add history view. #3, #20
+Add history view. #3, #20
+
+## v0.1.2
+
+Force word-wrap on long strings without whitespace #15, #17
