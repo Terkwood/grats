@@ -27,10 +27,11 @@ impl EntryButtonCollection {
         MAX_USER_BUTTONS - (self.all().len() - DefaultEmoji::all().len()) as u8
     }
 
-    pub fn allowed_emojis() -> Vec<String> {
+    pub fn allowed_emojis(&self) -> Vec<String> {
         vec!["🥳", "🤩", "🌈", "😁", "🌌"]
             .iter()
             .map(|s| s.to_string())
+            .filter(|e| !self.user_emojis.contains(&Emoji(e.to_string())))
             .collect()
     }
 

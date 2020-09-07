@@ -1,3 +1,7 @@
+# v0.2.3
+
+Forbid duplicating custom entry button. #24, #12
+
 # v0.2.2
 
 - Show software version in Config view. #22
