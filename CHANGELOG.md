@@ -1,3 +1,7 @@
+# v0.2.2
+
+Show software version in Config view. #22
+
 # v0.2.1
 
 Word-wrap the history view. #21
