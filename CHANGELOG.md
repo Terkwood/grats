@@ -1,6 +1,7 @@
 # v0.2.2
 
-Show software version in Config view. #22
+- Show software version in Config view. #22
+- Fix wrap in Config view. #23
 
 # v0.2.1
 
