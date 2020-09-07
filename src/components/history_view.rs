@@ -2,16 +2,16 @@ use crate::model::*;
 use crate::time::*;
 use chrono::prelude::*;
 use yew::prelude::*;
-struct HistoryView {
+pub struct HistoryView {
     history: History,
     props: Props,
     link: ComponentLink<Self>,
 }
 #[derive(Properties, Clone, PartialEq)]
-struct Props {
-    gratitude_list: GratitudeList,
+pub struct Props {
+    pub gratitude_list: GratitudeList,
 }
-enum Msg {}
+pub enum Msg {}
 
 const EMPTY_MSG: &str =
     "This is your history of daily gratitude entries.  You haven't written anything down yet.";

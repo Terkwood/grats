@@ -9,6 +9,7 @@ pub use app::App;
 pub use config::Config;
 pub use daily::Daily;
 pub use entry_buttons_view::EntryButtonsView;
+pub use history_view::HistoryView;
 pub use nav::Nav;
 
 #[derive(Copy, Clone, PartialEq, Debug)]
