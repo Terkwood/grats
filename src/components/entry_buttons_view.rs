@@ -75,7 +75,7 @@ impl Component for EntryButtonsView {
 
 impl EntryButtonsView {
     fn view_emoji_selection_buttons(&self) -> Html {
-        EntryButtonCollection::allowed_emojis()
+        self.props.entry_buttons.allowed_emojis()
             .iter()
             .map(|emoji|{ let e = emoji.clone();
             html! {
