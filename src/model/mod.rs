@@ -1,11 +1,13 @@
 mod entry_button;
+pub mod history;
 
 pub use entry_button::EntryButtonCollection;
+pub use history::History;
 
 use chrono::prelude::*;
 use serde_derive::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Ord, Eq, PartialOrd)]
 pub struct GratitudeList {
     pub entries: Vec<Entry>,
 }

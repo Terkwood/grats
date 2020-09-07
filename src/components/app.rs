@@ -108,7 +108,7 @@ impl Component for App {
             {
                 match self.page {
                     Page::Daily => self.view_daily(),
-                    Page::History => { html! { <div>{ "🚧 COMING SOON 🚧" }</div>} },
+                    Page::History => self.view_history(),
                     Page::Config => self.view_config(),
                 }
             }
@@ -126,6 +126,14 @@ impl App {
                 add_entry={self.add_entry.as_ref().expect("add entry cb")}
                 entry_buttons={self.entry_buttons.clone()}
                 show_nav={self.show_nav.as_ref().expect("show nav cb")}
+            />
+        }
+    }
+
+    fn view_history(&self) -> Html {
+        html! {
+            <HistoryView
+                gratitude_list={self.gratitude_list.clone()}
             />
         }
     }
