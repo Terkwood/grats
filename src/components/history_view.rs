@@ -75,11 +75,16 @@ impl HistoryView {
         let local_datetime = Utc
             .timestamp_millis(entry.time.0 as i64)
             .with_timezone(&js_local_offset());
-        let date_string: String = local_datetime.format("%m/%d %R").to_string();
+        let date_string: String = local_datetime.format("%R").to_string();
 
         html! {
             <li class="gratitude_list_entry">
-                { format!("{} [{}] {} " , entry.emoji.0, date_string, entry.text) }
+                <span>{
+                    format!("{} {} " , entry.emoji.0,  entry.text)
+                }</span>
+                <span style="font-size: 2.33vw">{
+                    format!("({})", date_string)
+                }</span>
             </li>
         }
     }
