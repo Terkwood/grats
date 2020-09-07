@@ -78,11 +78,11 @@ impl HistoryView {
         let date_string: String = local_datetime.format("%R").to_string();
 
         html! {
-            <li class="gratitude_list_entry">
+            <li>
                 <span>{
                     format!("{} {} " , entry.emoji.0,  entry.text)
                 }</span>
-                <span style="font-size: 2.33vw">{
+                <span class="history_time">{
                     format!("({})", date_string)
                 }</span>
             </li>
