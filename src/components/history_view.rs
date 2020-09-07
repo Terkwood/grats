@@ -5,7 +5,7 @@ use yew::prelude::*;
 pub struct HistoryView {
     history: History,
     props: Props,
-    link: ComponentLink<Self>,
+    _link: ComponentLink<Self>,
 }
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -21,13 +21,13 @@ impl Component for HistoryView {
 
     type Properties = Props;
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
         let history = History::from(&props.gratitude_list, js_local_offset());
 
         Self {
             history,
             props,
-            link,
+            _link,
         }
     }
 
