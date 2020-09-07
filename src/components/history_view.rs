@@ -1,4 +1,6 @@
 use crate::model::*;
+use crate::time::*;
+use chrono::prelude::*;
 use yew::prelude::*;
 struct HistoryView {
     history: History,
@@ -20,7 +22,7 @@ impl Component for HistoryView {
     type Properties = Props;
 
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let history = History::from(&props.gratitude_list, todo!("offset"));
+        let history = History::from(&props.gratitude_list, js_local_offset());
 
         Self {
             history,
@@ -70,8 +72,10 @@ impl HistoryView {
     }
 
     fn view_entry(&self, entry: &Entry) -> Html {
-        let dt = todo!(); //js_local_datetime(e.timestamp());
-        let date_string: String = todo!(); //dt.format("%m/%d %R").to_string();
+        let local_datetime = Utc
+            .timestamp_millis(entry.time.0 as i64)
+            .with_timezone(&js_local_offset());
+        let date_string: String = local_datetime.format("%m/%d %R").to_string();
 
         html! {
             <li class="gratitude_list_entry">
