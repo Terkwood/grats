@@ -19,7 +19,7 @@ ul {
   text-align: center;
 }
 
-#gratitude {
+.gratitude {
   text-align: left;
   display: -moz-inline-stack;
   display: inline-block;
