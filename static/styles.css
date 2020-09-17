@@ -96,3 +96,13 @@ ul {
 .history_time {
   font-size: 2.33vw;
 }
+
+#export_button {
+  font-size: 4vw;
+  height: 90%;
+}
+
+.download {
+  text-decoration: none;
+  color: black;
+}
