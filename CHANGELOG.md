@@ -1,3 +1,7 @@
+# v0.3.0
+
+Add export button.
+
 # v0.2.3
 
 Forbid duplicating custom entry button. #24, #12

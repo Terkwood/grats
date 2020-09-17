@@ -1,6 +1,8 @@
 use super::EntryButtonsView;
 use crate::model::*;
+use crate::time::js_utc_now;
 use yew::prelude::*;
+use yew_export_button::{export_button, ButtonOpts};
 
 pub struct Config {
     pub link: ComponentLink<Self>,
@@ -44,14 +46,25 @@ impl Component for Config {
 }
 
 const REPO_URL: &str = "https://github.com/Terkwood/grats";
-const VERSION: &'static str = env!("CARGO_PKG_VERSION");
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+const EXPORT_FILE_PREFIX: &str = "grats";
+const EXPORT_BUTTON_CSS_ID: &str = "export_button";
+const EXPORT_A_CSS_CLASS: &str = "download";
 impl Config {
     fn view_export(&self) -> Html {
+        let button = export_button(
+            &self.props.gratitude_list,
+            ButtonOpts {
+                utc_millis: js_utc_now().0,
+                a_class: EXPORT_A_CSS_CLASS,
+                button_id: EXPORT_BUTTON_CSS_ID,
+                file_prefix: EXPORT_FILE_PREFIX,
+            },
+        );
         html! {
             <div class="configsection">
-                <h1>{ "🚧 Export Data 🚧"}</h1>
-                <p>{ "🚧🚧🚧🚧🚧🚧🚧 Click to save your data to a file on your device." }</p>
-                <div>{ "🚧 COMING SOON 🚧" }</div>
+                <h1>{ "Export Data"}</h1>
+                { button }
             </div>
         }
     }
