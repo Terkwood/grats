@@ -1,3 +1,7 @@
+# v0.4.0
+
+Add many more options for custom emojis.
+
 # v0.3.0
 
 Add export button.
