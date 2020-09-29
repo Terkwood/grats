@@ -1,6 +1,6 @@
 # v0.4.0
 
-Add many more options for custom emojis.
+Add many more options for custom emojis. #30, #6
 
 # v0.3.0
 
