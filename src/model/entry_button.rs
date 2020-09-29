@@ -8,6 +8,10 @@ pub struct EntryButtonCollection {
     pub user_emojis: Vec<Emoji>,
 }
 
+const ALLOWED_EMOJIS: &[&str] = &[
+    "🥳", "🤩", "🌈", "😁", "🌌", "🍕", "🌊", "🌟", "⭐", "🌠", "👪",
+];
+
 impl EntryButtonCollection {
     pub fn empty() -> Self {
         Self {
@@ -28,7 +32,7 @@ impl EntryButtonCollection {
     }
 
     pub fn allowed_emojis(&self) -> Vec<String> {
-        vec!["🥳", "🤩", "🌈", "😁", "🌌"]
+        ALLOWED_EMOJIS
             .iter()
             .map(|s| s.to_string())
             .filter(|e| !self.user_emojis.contains(&Emoji(e.to_string())))
