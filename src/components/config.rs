@@ -15,6 +15,7 @@ pub struct Props {
     pub gratitude_list: GratitudeList,
     pub add_entry_button: Callback<Emoji>,
     pub del_entry_button: Callback<Emoji>,
+    pub reset_entry_buttons: Callback<()>,
 }
 
 impl Component for Config {
@@ -75,6 +76,7 @@ impl Config {
                 entry_buttons=self.props.entry_buttons.clone()
                 add_entry_button=self.props.add_entry_button.clone()
                 del_entry_button=self.props.del_entry_button.clone()
+                reset_entry_buttons=self.props.reset_entry_buttons.clone()
             />
         }
     }

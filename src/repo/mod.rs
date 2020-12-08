@@ -47,7 +47,7 @@ impl EntryButtonsRepo {
         if let Json(Ok(restored_model)) = self.storage_service.restore(ENTRY_BUTTONS_KEY) {
             restored_model
         } else {
-            EntryButtonCollection::empty()
+            EntryButtonCollection::new()
         }
     }
 

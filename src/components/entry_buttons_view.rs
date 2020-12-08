@@ -11,11 +11,13 @@ pub struct Props {
     pub entry_buttons: EntryButtonCollection,
     pub add_entry_button: Callback<Emoji>,
     pub del_entry_button: Callback<Emoji>,
+    pub reset_entry_buttons: Callback<()>,
 }
 
 pub enum Msg {
     AddButton(Emoji),
     DelButton(Emoji),
+    Reset,
 }
 
 impl Component for EntryButtonsView {
@@ -35,6 +37,10 @@ impl Component for EntryButtonsView {
             }
             Msg::DelButton(emoji) => {
                 self.props.del_entry_button.emit(emoji);
+                true
+            }
+            Msg::Reset => {
+                self.props.reset_entry_buttons.emit(());
                 true
             }
         }
@@ -68,6 +74,7 @@ impl Component for EntryButtonsView {
                         html! { <></> }
                     }
                 }
+                { self.view_reset() }
             </div>
         }
     }
@@ -96,23 +103,34 @@ impl EntryButtonsView {
     }
 
     fn view_current_entry_button(&self, emoji: &Emoji) -> Html {
-        let default_all: Vec<Emoji> = DefaultEmoji::all().iter().map(|de| de.instance()).collect();
-        let can_delete = !default_all.contains(emoji);
-
         let emc = emoji.clone();
         html! {
             <li class="big">
                 { emoji.0.clone() }
                 {
-                    if can_delete {
-                        html! { <button
-                                    class="delete_entry_button"
-                                    onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}> { "DELETE 🗑" } </button>                                }
-                    } else {
-                        html! { <></> }
+                    html! {
+                        <button
+                            class="entry_button"
+                            onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}>
+                            { "DELETE 🗑" }
+                        </button>
                     }
                 }
             </li>
+        }
+    }
+
+    fn view_reset(&self) -> Html {
+        html! {
+            <>
+                <h2>{ "Reset Default Buttons"}</h2>
+                <div>{ "You may reset the app to use the default buttons." }</div>
+                <button
+                    class="entry_button"
+                    onclick={self.link.callback(move |_| Msg::Reset)}>
+                    { "RESET 🔁" }
+                </button>
+            </>
         }
     }
 }
