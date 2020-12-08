@@ -1,3 +1,7 @@
+# NEXT: v0.5.0
+
+Allow the default emojis to be replaced by the user.
+
 # v0.4.0
 
 Add many more options for custom emojis. #30, #6
