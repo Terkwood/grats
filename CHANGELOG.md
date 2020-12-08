@@ -1,6 +1,6 @@
 # NEXT: v0.5.1
 
-- Upgrades dependencies
+- Upgrades dependencies. #33
 
 # v0.5.0
 
