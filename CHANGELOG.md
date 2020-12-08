@@ -1,6 +1,6 @@
-# NEXT: v0.5.0
+# v0.5.0
 
-Allow the default emojis to be replaced by the user.
+Allow the default emojis to be replaced by the user. #29, #31
 
 # v0.4.0
 
