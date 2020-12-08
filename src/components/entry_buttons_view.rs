@@ -96,20 +96,17 @@ impl EntryButtonsView {
     }
 
     fn view_current_entry_button(&self, emoji: &Emoji) -> Html {
-        let default_all: Vec<Emoji> = DefaultEmoji::all().iter().map(|de| de.instance()).collect();
-        let can_delete = !default_all.contains(emoji);
-
         let emc = emoji.clone();
         html! {
             <li class="big">
                 { emoji.0.clone() }
                 {
-                    if can_delete {
-                        html! { <button
-                                    class="delete_entry_button"
-                                    onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}> { "DELETE 🗑" } </button>                                }
-                    } else {
-                        html! { <></> }
+                    html! {
+                        <button
+                            class="delete_entry_button"
+                            onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}>
+                            { "DELETE 🗑" }
+                        </button>
                     }
                 }
             </li>
