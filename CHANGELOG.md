@@ -1,3 +1,7 @@
+# NEXT: v0.5.1
+
+- Upgrades dependencies
+
 # v0.5.0
 
 Allow the default emojis to be replaced by the user. #29, #31
