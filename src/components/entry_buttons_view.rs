@@ -110,7 +110,7 @@ impl EntryButtonsView {
                 {
                     html! {
                         <button
-                            class="delete_entry_button"
+                            class="entry_button"
                             onclick={self.link.callback(move |_| Msg::DelButton(emc.clone()))}>
                             { "DELETE 🗑" }
                         </button>
@@ -124,7 +124,10 @@ impl EntryButtonsView {
         html! {
             <>
                 <h2>{ "Reset Default Buttons"}</h2>
-                <button onclick={self.link.callback(move |_| Msg::Reset)}>
+                <div>{ "You may reset the app to use the default buttons." }</div>
+                <button
+                    class="entry_button"
+                    onclick={self.link.callback(move |_| Msg::Reset)}>
                     { "RESET 🔁" }
                 </button>
             </>
