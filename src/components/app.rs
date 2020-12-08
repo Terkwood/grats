@@ -21,6 +21,7 @@ pub struct App {
 
     add_entry_button: Option<Callback<Emoji>>,
     del_entry_button: Option<Callback<Emoji>>,
+    reset_entry_buttons: Option<Callback<()>>,
 }
 
 pub enum Msg {
@@ -29,6 +30,7 @@ pub enum Msg {
     ShowNav(bool),
     AddEntryButton(Emoji),
     DeleteEntryButton(Emoji),
+    ResetEntryButtons,
 }
 
 #[derive(PartialEq)]
@@ -49,6 +51,7 @@ impl Component for App {
 
         let add_entry_button = Some(link.callback(|emoji| Msg::AddEntryButton(emoji)));
         let del_entry_button = Some(link.callback(|emoji| Msg::DeleteEntryButton(emoji)));
+        let reset_entry_buttons = Some(link.callback(|_| Msg::ResetEntryButtons));
 
         let gratitude_list_repo = GratitudeListRepo::new();
         let gratitude_list = gratitude_list_repo.read();
@@ -68,6 +71,7 @@ impl Component for App {
             add_entry,
             add_entry_button,
             del_entry_button,
+            reset_entry_buttons,
         }
     }
 
@@ -91,6 +95,10 @@ impl Component for App {
             }
             Msg::DeleteEntryButton(emoji) => {
                 self.entry_buttons.delete(&emoji);
+                self.entry_buttons_repo.save(&self.entry_buttons);
+            }
+            Msg::ResetEntryButtons => {
+                self.entry_buttons = EntryButtonCollection::new();
                 self.entry_buttons_repo.save(&self.entry_buttons);
             }
         }
@@ -145,6 +153,7 @@ impl App {
                 gratitude_list={self.gratitude_list.clone()}
                 add_entry_button={self.add_entry_button.as_ref().expect("add inv button cb")}
                 del_entry_button={self.del_entry_button.as_ref().expect("del button cb")}
+                reset_entry_buttons={self.reset_entry_buttons.as_ref().expect("reset buttons cb")}
             />
         }
     }

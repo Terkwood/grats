@@ -11,11 +11,13 @@ pub struct Props {
     pub entry_buttons: EntryButtonCollection,
     pub add_entry_button: Callback<Emoji>,
     pub del_entry_button: Callback<Emoji>,
+    pub reset_entry_buttons: Callback<()>,
 }
 
 pub enum Msg {
     AddButton(Emoji),
     DelButton(Emoji),
+    Reset,
 }
 
 impl Component for EntryButtonsView {
@@ -35,6 +37,10 @@ impl Component for EntryButtonsView {
             }
             Msg::DelButton(emoji) => {
                 self.props.del_entry_button.emit(emoji);
+                true
+            }
+            Msg::Reset => {
+                self.props.reset_entry_buttons.emit(());
                 true
             }
         }
@@ -68,6 +74,7 @@ impl Component for EntryButtonsView {
                         html! { <></> }
                     }
                 }
+                { self.view_reset() }
             </div>
         }
     }
@@ -110,6 +117,17 @@ impl EntryButtonsView {
                     }
                 }
             </li>
+        }
+    }
+
+    fn view_reset(&self) -> Html {
+        html! {
+            <>
+                <h2>{ "Reset Default Buttons"}</h2>
+                <button onclick={self.link.callback(move |_| Msg::Reset)}>
+                    { "RESET 🔁" }
+                </button>
+            </>
         }
     }
 }
