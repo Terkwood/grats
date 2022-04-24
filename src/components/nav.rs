@@ -35,30 +35,44 @@ impl Component for Nav {
     }
     fn view(&self) -> Html {
         let page = self.props.page;
-        let prev = page.prev();
-        let next = page.next();
+        let daily_nav = if page == Page::Daily {
+            html!{ <span class="nav"><strong>{ "Daily" }</strong></span>}
+        } else {
+            html!{ 
+                <span class="nav" 
+                    onclick = self.link.callback(move|_| NavMsg(Page::Daily))>
+                    { "Daily" }
+                </span>
+            }
+        };
+        let history_nav = if page == Page::History {
+            html!{ <span class="nav">{ "History" }</span>}
+        } else {
+            html!{ 
+                <span class="nav" 
+                    onclick = self.link.callback(move|_| NavMsg(Page::History))>
+                    { "History" }
+                </span>
+            }
+        };
+        let config_nav = if page == Page::Config {
+            html!{ <span class="nav">{ "Config" }</span>}
+        } else {
+            html!{ 
+                <span class="nav" 
+                    onclick = self.link.callback(move|_| NavMsg(Page::Config))>
+                    { "Config" }
+                </span>
+            }
+        };
+        
         html! {
             <div>
-                <div class="bottomleft">
-                    <button
-                        class="navbutton"
-                        onclick={
-                            self.link
-                                .callback(
-                                    move |_| NavMsg(prev))}>
-                        { "⏪" }
-                    </button>
-                </div>
-                <div class="bottomright">
-                    <button
-                        class="navbutton"
-                        onclick={
-                            self.link
-                                .callback(
-                                    move |_| NavMsg(next))}>
-                            { "⏩" }
-                    </button>
-                </div>
+                { daily_nav } 
+                { "|" } 
+                { history_nav } 
+                { "|" } 
+                { config_nav }
             </div>
         }
     }

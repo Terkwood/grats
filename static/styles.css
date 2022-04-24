@@ -47,23 +47,10 @@ ul {
   height: 100%;
 }
 
-.navbutton {
+.nav {
   font-size: 5vh;
 }
 
-.bottomright {
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-.bottomleft {
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
 
 #inputgridwaiting {
   height: 28vh;
