@@ -25,8 +25,7 @@ pub enum Mode {
 pub struct Props {
     pub gratitude_list: GratitudeList,
     pub entry_buttons: EntryButtonCollection,
-    pub add_entry: Callback<Entry>,
-    pub show_nav: Callback<bool>,
+    pub add_entry: Callback<Entry>
 }
 
 impl Component for Daily {
@@ -47,12 +46,10 @@ impl Component for Daily {
         match msg {
             Msg::FocusInput => {
                 self.mode = Mode::Input;
-                self.props.show_nav.emit(false)
             }
             Msg::TextAreaUpdated(text) => self.text_area = text,
             Msg::SubmitEntry(emoji) => {
                 self.mode = Mode::Default;
-                self.props.show_nav.emit(true);
                 if !self.text_area.is_empty() {
                     self.props.add_entry.emit(Entry {
                         emoji,

@@ -34,32 +34,32 @@ impl Component for Nav {
         }
     }
     fn view(&self) -> Html {
-        let page = self.props.page;
-        let prev = page.prev();
-        let next = page.next();
+        
         html! {
-            <div>
-                <div class="bottomleft">
-                    <button
-                        class="navbutton"
-                        onclick={
-                            self.link
-                                .callback(
-                                    move |_| NavMsg(prev))}>
-                        { "⏪" }
-                    </button>
-                </div>
-                <div class="bottomright">
-                    <button
-                        class="navbutton"
-                        onclick={
-                            self.link
-                                .callback(
-                                    move |_| NavMsg(next))}>
-                            { "⏩" }
-                    </button>
-                </div>
+            <div id="navcontainer">
+                { self.span_element("Daily", Page::Daily) } 
+                { " | " } 
+                { self.span_element("History", Page::History) } 
+                { " | " } 
+                { self.span_element("Config", Page::Config) }
             </div>
+        }
+    }
+
+}
+
+impl Nav {
+
+    fn span_element(&self, text: &str, target: Page) -> Html {
+        if self.props.page == target {
+            html!{ <span class="nav"><strong>{ text }</strong></span>}
+        } else {
+            html!{ 
+                <span class="nav" 
+                    onclick = self.link.callback(move|_| NavMsg(target))>
+                    { text }
+                </span>
+            }
         }
     }
 }
