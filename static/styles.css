@@ -51,6 +51,12 @@ ul {
   font-size: 5vh;
 }
 
+#navcontainer {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
 
 #inputgridwaiting {
   height: 28vh;

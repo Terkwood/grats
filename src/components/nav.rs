@@ -34,46 +34,32 @@ impl Component for Nav {
         }
     }
     fn view(&self) -> Html {
-        let page = self.props.page;
-        let daily_nav = if page == Page::Daily {
-            html!{ <span class="nav"><strong>{ "Daily" }</strong></span>}
-        } else {
-            html!{ 
-                <span class="nav" 
-                    onclick = self.link.callback(move|_| NavMsg(Page::Daily))>
-                    { "Daily" }
-                </span>
-            }
-        };
-        let history_nav = if page == Page::History {
-            html!{ <span class="nav">{ "History" }</span>}
-        } else {
-            html!{ 
-                <span class="nav" 
-                    onclick = self.link.callback(move|_| NavMsg(Page::History))>
-                    { "History" }
-                </span>
-            }
-        };
-        let config_nav = if page == Page::Config {
-            html!{ <span class="nav">{ "Config" }</span>}
-        } else {
-            html!{ 
-                <span class="nav" 
-                    onclick = self.link.callback(move|_| NavMsg(Page::Config))>
-                    { "Config" }
-                </span>
-            }
-        };
         
         html! {
-            <div>
-                { daily_nav } 
-                { "|" } 
-                { history_nav } 
-                { "|" } 
-                { config_nav }
+            <div id="navcontainer">
+                { self.span_element("Daily", Page::Daily) } 
+                { " | " } 
+                { self.span_element("History", Page::History) } 
+                { " | " } 
+                { self.span_element("Config", Page::Config) }
             </div>
+        }
+    }
+
+}
+
+impl Nav {
+
+    fn span_element(&self, text: &str, target: Page) -> Html {
+        if self.props.page == target {
+            html!{ <span class="nav"><strong>{ text }</strong></span>}
+        } else {
+            html!{ 
+                <span class="nav" 
+                    onclick = self.link.callback(move|_| NavMsg(target))>
+                    { text }
+                </span>
+            }
         }
     }
 }
