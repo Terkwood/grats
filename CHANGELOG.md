@@ -2,6 +2,7 @@
 
 - Upgrades dependencies. #33
 - Make 🌞, ♥ emojis selectable for entry buttons. #34
+- Add margin to the main content. 
 
 # v0.5.0
 
