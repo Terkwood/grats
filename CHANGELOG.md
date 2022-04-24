@@ -1,4 +1,4 @@
-# NEXT: v0.5.1
+# v0.5.1
 
 - Upgrades dependencies. #33
 - Make 🌞, ♥ emojis selectable for entry buttons. #34
