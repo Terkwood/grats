@@ -113,13 +113,13 @@ impl Component for App {
     fn view(&self) -> Html {
         html! {
             <>
-            {
+            <main>{
                 match self.page {
                     Page::Daily => self.view_daily(),
                     Page::History => self.view_history(),
                     Page::Config => self.view_config(),
                 }
-            }
+            }</main>
             { self.view_nav() }
             </>
         }
