@@ -36,7 +36,7 @@ impl Component for Nav {
     fn view(&self) -> Html {
         
         html! {
-            <div id="navcontainer">
+            <div id="nav">
                 { self.span_element("Daily", Page::Daily) } 
                 { " | " } 
                 { self.span_element("History", Page::History) } 
@@ -52,10 +52,10 @@ impl Nav {
 
     fn span_element(&self, text: &str, target: Page) -> Html {
         if self.props.page == target {
-            html!{ <span class="nav"><strong>{ text }</strong></span>}
+            html!{ <span><strong>{ text }</strong></span>}
         } else {
             html!{ 
-                <span class="nav" 
+                <span
                     onclick = self.link.callback(move|_| NavMsg(target))>
                     { text }
                 </span>

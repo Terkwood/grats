@@ -47,11 +47,7 @@ ul {
   height: 100%;
 }
 
-.nav {
-  font-size: 5vh;
-}
-
-#navcontainer {
+#nav {
   margin: auto;
   width: 50%;
   text-align: center;
