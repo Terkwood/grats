@@ -1,38 +1,10 @@
-# v0.5.1
+# Changelog
 
-- Upgrades dependencies. #33
-- Make 🌞, ♥ emojis selectable for entry buttons. #34
-- Add margin to the main content. #39
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# v0.5.0
+### [0.5.2](https://github.com/Terkwood/grats/compare/v0.5.1...v0.5.2) (2022-04-24)
 
-Allow the default emojis to be replaced by the user. #29, #31
 
-# v0.4.0
+### Bug Fixes
 
-Add many more options for custom emojis. #30, #6
-
-# v0.3.0
-
-Add export button.
-
-# v0.2.3
-
-Forbid duplicating custom entry button. #24, #12
-
-# v0.2.2
-
-- Show software version in Config view. #22
-- Fix wrap in Config view. #23
-
-# v0.2.1
-
-Word-wrap the history view. #21
-
-# v0.2.0
-
-Add history view. #3, #20
-
-# v0.1.2
-
-Force word-wrap on long strings without whitespace. #15, #17
+* nav cleanup ([#40](https://github.com/Terkwood/grats/issues/40)) ([820c686](https://github.com/Terkwood/grats/commit/820c686b2b8a97a7788c7b5b0610e9e29da39217))
