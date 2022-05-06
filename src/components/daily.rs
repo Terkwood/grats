@@ -1,6 +1,7 @@
 use crate::model::*;
 use crate::time::js_utc_now;
 use yew::prelude::*;
+use yew::Context;
 
 pub struct Daily {
     link: ComponentLink<Self>,
@@ -33,16 +34,16 @@ impl Component for Daily {
 
     type Properties = Props;
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+    fn create(ctx:&Context<Self>) -> Self {
         Self {
-            props,
-            link,
+            props: ctx.props().clone(),
+            link: ctx.link().clone(),
             text_area: String::new(),
             mode: Mode::Default,
         }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self,_:&Context<Self>, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::FocusInput => {
                 self.mode = Mode::Input;
@@ -74,7 +75,7 @@ impl Component for Daily {
         }
     }
 
-    fn view(&self) -> Html {
+    fn view(&self,_:&Context<Self>,) -> Html {
         html! {
             <>
                 { self.view_input() }

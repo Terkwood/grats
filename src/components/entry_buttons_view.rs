@@ -1,5 +1,6 @@
 use crate::model::*;
 use yew::prelude::*;
+use yew::Context;
 
 pub struct EntryButtonsView {
     pub link: ComponentLink<Self>,
@@ -25,11 +26,11 @@ impl Component for EntryButtonsView {
 
     type Properties = Props;
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self { props, link }
+    fn create(ctx: &Context<Self>) -> Self {
+        Self { props: ctx.props().clone(), link: ctx.link().clone() }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _: &Context<Self>, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::AddButton(emoji) => {
                 self.props.add_entry_button.emit(emoji);
@@ -55,7 +56,7 @@ impl Component for EntryButtonsView {
         }
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         let free = self.props.entry_buttons.free_user_buttons();
         html! {
             <div class="configsection">

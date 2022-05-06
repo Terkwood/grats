@@ -1,4 +1,4 @@
-use super::EntryButtonsView;
+use yew::Context;
 use crate::model::*;
 use crate::time::js_utc_now;
 use yew::prelude::*;
@@ -19,23 +19,24 @@ pub struct Props {
 }
 
 impl Component for Config {
+
     type Message = ();
     type Properties = Props;
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self { link, props }
+    fn create( ctx: &Context<Self>) -> Self {
+        Self { link: ctx.link().clone(), props : ctx.props().clone()}
     }
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _: &Context<Self>,_msg: Self::Message) -> bool {
         false
     }
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        if self.props != props {
-            self.props = props;
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
+        if &self.props != ctx.props() {
+            self.props = ctx.props().clone();
             true
         } else {
             false
         }
     }
-    fn view(&self) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         html! {
             <div>
                 { self.view_export() }
@@ -73,10 +74,10 @@ impl Config {
     fn view_inventory_buttons(&self) -> Html {
         html! {
             <EntryButtonsView
-                entry_buttons=self.props.entry_buttons.clone()
-                add_entry_button=self.props.add_entry_button.clone()
-                del_entry_button=self.props.del_entry_button.clone()
-                reset_entry_buttons=self.props.reset_entry_buttons.clone()
+                entry_buttons={self.props.entry_buttons.clone()}
+                add_entry_button={self.props.add_entry_button.clone()}
+                del_entry_button={self.props.del_entry_button.clone()}
+                reset_entry_buttons={self.props.reset_entry_buttons.clone()}
             />
         }
     }

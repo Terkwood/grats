@@ -3,6 +3,7 @@ use crate::model::*;
 use crate::repo::*;
 use crate::time::{js_local_offset, js_utc_now};
 use yew::prelude::*;
+use yew::Context;
 
 pub struct App {
     page: Page,
@@ -34,8 +35,8 @@ impl Component for App {
     type Message = Msg;
     type Properties = ();
 
-    fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let nav_to = Some(link.callback(|page| Msg::NavigateTo(page)));
+    fn create(ctx:&Context<Self>) -> Self {
+        let nav_to = Some(ctx.link().callback(|page| Msg::NavigateTo(page)));
         
         let add_entry = Some(link.callback(|entry| Msg::AddEntry(entry)));
 
@@ -63,7 +64,7 @@ impl Component for App {
         }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _:&Context<Self>,msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::AddEntry(entry) => {
                 self.gratitude_list.add(entry);
@@ -91,7 +92,7 @@ impl Component for App {
         false
     }
 
-    fn view(&self) -> Html {
+    fn view(&self,_:&Context<Self>) -> Html {
         html! {
             <>
             { self.view_nav() }
