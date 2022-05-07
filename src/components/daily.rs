@@ -14,7 +14,7 @@ pub enum Msg {
     SubmitEntry(Emoji),
     TextAreaUpdated(String),
     FocusInput,
-    NothingHappened,
+    IgnoreThis,
 }
 
 #[derive(PartialEq)]
@@ -100,7 +100,7 @@ impl Daily {
                                     if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
                                         Msg::TextAreaUpdated(input.value())
                                     }  else {
-                                        Msg::NothingHappened
+                                        Msg::IgnoreThis
                                     }
                                 )}
                                 placeholder="What are you grateful for?">
