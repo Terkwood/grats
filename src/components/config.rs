@@ -45,7 +45,7 @@ const EXPORT_BUTTON_CSS_ID: &str = "export_button";
 const EXPORT_A_CSS_CLASS: &str = "download";
 impl Config {
     fn view_export(&self,ctx:&Context<Self>) -> Html {
-        let button = export_button(
+        let button: Html = export_button(
             &ctx.props().gratitude_list,
             ButtonOpts {
                 utc_millis: js_utc_now().0,

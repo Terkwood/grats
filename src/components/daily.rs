@@ -2,6 +2,8 @@ use crate::model::*;
 use crate::time::js_utc_now;
 use yew::prelude::*;
 use yew::Context;
+use web_sys::HtmlTextAreaElement;
+use yew::events::InputEvent;
 
 pub struct Daily {
     text_area: String,
@@ -12,6 +14,7 @@ pub enum Msg {
     SubmitEntry(Emoji),
     TextAreaUpdated(String),
     FocusInput,
+    NothingHappened
 }
 
 #[derive(PartialEq)]
@@ -57,7 +60,8 @@ impl Component for Daily {
 
                     self.text_area.clear()
                 };
-            }
+            },
+            _ => ()
         }
 
         true
@@ -94,7 +98,13 @@ impl Daily {
                     <textarea
                         value={self.text_area}
                         onfocus={ctx.link().callback(|_| Msg::FocusInput)}
-                        oninput={ctx.link().callback(|e: InputData| Msg::TextAreaUpdated(e.value))}
+                        oninput={ctx.link().callback(|e: InputEvent| 
+                            if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
+                                Msg::TextAreaUpdated(input.value())
+                            }  else {
+Msg::NothingHappened
+                            }
+                        )}
                         placeholder="What are you grateful for?">
                     </textarea>
                 </div>
