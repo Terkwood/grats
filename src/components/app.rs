@@ -30,14 +30,13 @@ pub enum Msg {
     ResetEntryButtons,
 }
 
-
 impl Component for App {
     type Message = Msg;
     type Properties = ();
 
-    fn create(ctx:&Context<Self>) -> Self {
+    fn create(ctx: &Context<Self>) -> Self {
         let nav_to = Some(ctx.link().callback(|page| Msg::NavigateTo(page)));
-        
+
         let add_entry = Some(ctx.link().callback(|entry| Msg::AddEntry(entry)));
 
         let add_entry_button = Some(ctx.link().callback(|emoji| Msg::AddEntryButton(emoji)));
@@ -64,7 +63,7 @@ impl Component for App {
         }
     }
 
-    fn update(&mut self, _:&Context<Self>,msg: Self::Message) -> bool {
+    fn update(&mut self, _: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::AddEntry(entry) => {
                 self.gratitude_list.add(entry);
@@ -88,13 +87,13 @@ impl Component for App {
         true
     }
 
-//TODO is it ok to gag this?
-    /* 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        false
-    }
-*/
-    fn view(&self,_:&Context<Self>) -> Html {
+    //TODO is it ok to gag this?
+    /*
+        fn change(&mut self, _props: Self::Properties) -> ShouldRender {
+            false
+        }
+    */
+    fn view(&self, _: &Context<Self>) -> Html {
         html! {
             <>
             { self.view_nav() }
@@ -148,6 +147,5 @@ impl App {
                 nav_to={self.nav_to.as_ref().expect("nav cb")}
             />
         }
-
     }
 }

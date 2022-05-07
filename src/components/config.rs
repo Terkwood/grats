@@ -1,12 +1,11 @@
-use yew::Context;
+use crate::components::EntryButtonsView;
 use crate::model::*;
 use crate::time::js_utc_now;
-use crate::components::EntryButtonsView;
 use yew::prelude::*;
+use yew::Context;
 use yew_export_button::{export_button, ButtonOpts};
 
 pub struct Config;
-
 
 #[derive(Properties, PartialEq, Clone)]
 pub struct Props {
@@ -18,15 +17,14 @@ pub struct Props {
 }
 
 impl Component for Config {
-
     type Message = ();
     type Properties = Props;
-    fn create( ctx: &Context<Self>) -> Self {
-        Self 
+    fn create(ctx: &Context<Self>) -> Self {
+        Self
     }
-    fn update(&mut self, _: &Context<Self>,_msg: Self::Message) -> bool {
+    fn update(&mut self, _: &Context<Self>, _msg: Self::Message) -> bool {
         false
-    } 
+    }
     fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <div>
@@ -44,7 +42,7 @@ const EXPORT_FILE_PREFIX: &str = "grats";
 const EXPORT_BUTTON_CSS_ID: &str = "export_button";
 const EXPORT_A_CSS_CLASS: &str = "download";
 impl Config {
-    fn view_export(&self,ctx:&Context<Self>) -> Html {
+    fn view_export(&self, ctx: &Context<Self>) -> Html {
         let button: Html = export_button(
             &ctx.props().gratitude_list,
             ButtonOpts {
@@ -57,12 +55,12 @@ impl Config {
         html! {
             <div class="configsection">
                 <h1>{ "Export Data"}</h1>
-                 {button} 
+                 {button}
             </div>
         }
     }
 
-    fn view_inventory_buttons(&self,ctx:&Context<Self>) -> Html {
+    fn view_inventory_buttons(&self, ctx: &Context<Self>) -> Html {
         html! {
             <EntryButtonsView
                 entry_buttons={ctx.props().entry_buttons.clone()}

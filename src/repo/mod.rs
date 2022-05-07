@@ -1,6 +1,5 @@
 use crate::model::*;
-use gloo_storage::{LocalStorage,Storage};
-
+use gloo_storage::{LocalStorage, Storage};
 
 const GRATITUDE_LIST_KEY: &str = "gratitude_list";
 const ENTRY_BUTTONS_KEY: &str = "entry_buttons";
@@ -9,8 +8,7 @@ pub struct GratitudeListRepo;
 
 impl GratitudeListRepo {
     pub fn new() -> Self {
-         
-        Self  
+        Self
     }
 
     pub fn read(&self) -> GratitudeList {
@@ -31,8 +29,7 @@ pub struct EntryButtonsRepo;
 
 impl EntryButtonsRepo {
     pub fn new() -> Self {
-         
-        Self  
+        Self
     }
 
     pub fn read(&self) -> EntryButtonCollection {

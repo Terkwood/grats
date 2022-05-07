@@ -5,7 +5,7 @@ use yew::prelude::*;
 use yew::Context;
 pub struct HistoryView {
     history: History,
-    props: Props
+    props: Props,
 }
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -26,7 +26,7 @@ impl Component for HistoryView {
 
         Self {
             history,
-            props: ctx.props().clone()
+            props: ctx.props().clone(),
         }
     }
 
@@ -43,7 +43,7 @@ impl Component for HistoryView {
         }
     }
 
-    fn view(&self, ctx:&Context<Self>) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         let payload = &self.history.days;
         if payload.is_empty() {
             html! { <div id="history"> <p> { EMPTY_MSG } </p> </div> }

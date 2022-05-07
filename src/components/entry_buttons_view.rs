@@ -2,7 +2,7 @@ use crate::model::*;
 use yew::prelude::*;
 use yew::Context;
 
-pub struct EntryButtonsView ;
+pub struct EntryButtonsView;
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
     pub entry_buttons: EntryButtonCollection,
@@ -23,7 +23,7 @@ impl Component for EntryButtonsView {
     type Properties = Props;
 
     fn create(ctx: &Context<Self>) -> Self {
-        Self {  }
+        Self {}
     }
 
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
@@ -42,7 +42,6 @@ impl Component for EntryButtonsView {
             }
         }
     }
- 
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let free = ctx.props().entry_buttons.free_user_buttons();
@@ -109,7 +108,7 @@ impl EntryButtonsView {
         }
     }
 
-    fn view_reset(&self, ctx:&Context<Self>) -> Html {
+    fn view_reset(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
                 <h2>{ "Reset Default Buttons"}</h2>
