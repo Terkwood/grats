@@ -100,7 +100,7 @@ impl Daily {
                                     if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
                                         Msg::TextAreaUpdated(input.value())
                                     }  else {
-        Msg::NothingHappened
+                                        Msg::NothingHappened
                                     }
                                 )}
                                 placeholder="What are you grateful for?">
