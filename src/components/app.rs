@@ -38,11 +38,11 @@ impl Component for App {
     fn create(ctx:&Context<Self>) -> Self {
         let nav_to = Some(ctx.link().callback(|page| Msg::NavigateTo(page)));
         
-        let add_entry = Some(link.callback(|entry| Msg::AddEntry(entry)));
+        let add_entry = Some(ctx.link().callback(|entry| Msg::AddEntry(entry)));
 
-        let add_entry_button = Some(link.callback(|emoji| Msg::AddEntryButton(emoji)));
-        let del_entry_button = Some(link.callback(|emoji| Msg::DeleteEntryButton(emoji)));
-        let reset_entry_buttons = Some(link.callback(|_| Msg::ResetEntryButtons));
+        let add_entry_button = Some(ctx.link().callback(|emoji| Msg::AddEntryButton(emoji)));
+        let del_entry_button = Some(ctx.link().callback(|emoji| Msg::DeleteEntryButton(emoji)));
+        let reset_entry_buttons = Some(ctx.link().callback(|_| Msg::ResetEntryButtons));
 
         let gratitude_list_repo = GratitudeListRepo::new();
         let gratitude_list = gratitude_list_repo.read();
@@ -64,7 +64,7 @@ impl Component for App {
         }
     }
 
-    fn update(&mut self, _:&Context<Self>,msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _:&Context<Self>,msg: Self::Message) -> bool {
         match msg {
             Msg::AddEntry(entry) => {
                 self.gratitude_list.add(entry);
@@ -88,10 +88,12 @@ impl Component for App {
         true
     }
 
+//TODO is it ok to gag this?
+    /* 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
         false
     }
-
+*/
     fn view(&self,_:&Context<Self>) -> Html {
         html! {
             <>
