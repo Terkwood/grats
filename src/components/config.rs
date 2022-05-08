@@ -41,16 +41,18 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 const EXPORT_FILE_PREFIX: &str = "grats";
 const EXPORT_BUTTON_CSS_ID: &str = "export_button";
 const EXPORT_A_CSS_CLASS: &str = "download";
-impl Config {
+impl Config { 
     fn view_export(&self, ctx: &Context<Self>) -> Html {
+        let opts = ButtonOpts {
+            utc_millis: js_utc_now().0,
+            a_class: EXPORT_A_CSS_CLASS.to_string(),
+            button_id: EXPORT_BUTTON_CSS_ID.to_string(),
+            file_prefix: EXPORT_FILE_PREFIX.to_string(),
+        };
+    
         let button: Html = export_button(
             &ctx.props().gratitude_list,
-            ButtonOpts {
-                utc_millis: js_utc_now().0,
-                a_class: EXPORT_A_CSS_CLASS,
-                button_id: EXPORT_BUTTON_CSS_ID,
-                file_prefix: EXPORT_FILE_PREFIX,
-            },
+           opts
         );
         html! {
             <div class="configsection">

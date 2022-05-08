@@ -94,7 +94,7 @@ impl Daily {
                         >
                         <div style={format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)}>
                             <textarea
-                                value={self.text_area}
+                                value={self.text_area.clone()}
                                 onfocus={ctx.link().callback(|_| Msg::FocusInput)}
                                 oninput={ctx.link().callback(|e: InputEvent|
                                     if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
