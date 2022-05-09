@@ -17,7 +17,7 @@ pub struct NavMsg(Page);
 impl Component for Nav {
     type Message = NavMsg;
     type Properties = Props;
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         Self {}
     }
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {

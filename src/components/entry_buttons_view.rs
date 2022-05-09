@@ -22,7 +22,7 @@ impl Component for EntryButtonsView {
 
     type Properties = Props;
 
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         Self {}
     }
 

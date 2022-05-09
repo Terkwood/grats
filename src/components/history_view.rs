@@ -43,7 +43,7 @@ impl Component for HistoryView {
         }
     }
 
-    fn view(&self, ctx: &Context<Self>) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         let payload = &self.history.days;
         if payload.is_empty() {
             html! { <div id="history"> <p> { EMPTY_MSG } </p> </div> }

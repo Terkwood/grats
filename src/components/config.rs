@@ -19,7 +19,7 @@ pub struct Props {
 impl Component for Config {
     type Message = ();
     type Properties = Props;
-    fn create(ctx: &Context<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         Self
     }
     fn update(&mut self, _: &Context<Self>, _msg: Self::Message) -> bool {
