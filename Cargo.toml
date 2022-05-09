@@ -5,7 +5,7 @@ edition = "2018"
 license = "MIT"
 name = "grats"
 repository = "https://github.com/Terkwood/grats"
-version = "0.5.4-a"
+version = "1.0.0-a"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
