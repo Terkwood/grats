@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/Terkwood/grats/compare/v0.5.3...v1.0.0) (2022-05-09)
+
+
+### Bug Fixes
+
+* upgrade yew ([#45](https://github.com/Terkwood/grats/issues/45)) ([25c3689](https://github.com/Terkwood/grats/commit/25c3689bef5944a1a0a563f5b6496eab57fe7da0))
+
 ### [0.5.3](https://github.com/Terkwood/grats/compare/v0.5.2...v0.5.3) (2022-04-24)
 
 
