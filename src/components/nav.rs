@@ -2,7 +2,6 @@ use super::Page;
 use yew::prelude::*;
 use yew::Context;
 
-// TODO: remove props ?!
 pub struct Nav;
 
 #[derive(Properties, Clone, PartialEq)]

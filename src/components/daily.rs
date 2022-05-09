@@ -88,27 +88,27 @@ impl Daily {
             ("inputgridwaiting", GRID_TEMPLATE_ROWS_WAITING)
         };
         html! {
-                    <div
-                        id={input_grid_id}
-                        style={format!("grid-template: repeat({}, 1fr) / repeat({}, 1fr);", input_grid_rows, entry_buttons.len())}
-                        >
-                        <div style={format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)}>
-                            <textarea
-                                value={self.text_area.clone()}
-                                onfocus={ctx.link().callback(|_| Msg::FocusInput)}
-                                oninput={ctx.link().callback(|e: InputEvent|
-                                    if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
-                                        Msg::TextAreaUpdated(input.value())
-                                    }  else {
-                                        Msg::IgnoreThis
-                                    }
-                                )}
-                                placeholder="What are you grateful for?">
-                            </textarea>
-                        </div>
-                        { entry_buttons.iter().map(|emoji| self.view_entry_button(emoji,ctx)).collect::<Html>()}
-                    </div>
-                }
+            <div
+                id={input_grid_id}
+                style={format!("grid-template: repeat({}, 1fr) / repeat({}, 1fr);", input_grid_rows, entry_buttons.len())}
+                >
+                <div style={format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)}>
+                    <textarea
+                        value={self.text_area.clone()}
+                        onfocus={ctx.link().callback(|_| Msg::FocusInput)}
+                        oninput={ctx.link().callback(|e: InputEvent|
+                            if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
+                                Msg::TextAreaUpdated(input.value())
+                            }  else {
+                                Msg::IgnoreThis
+                            }
+                        )}
+                        placeholder="What are you grateful for?">
+                    </textarea>
+                </div>
+                { entry_buttons.iter().map(|emoji| self.view_entry_button(emoji,ctx)).collect::<Html>()}
+            </div>
+        }
     }
     fn view_todays_list(&self, ctx: &Context<Self>) -> Html {
         html! {

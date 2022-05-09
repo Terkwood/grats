@@ -5,7 +5,6 @@ use yew::prelude::*;
 use yew::Context;
 pub struct HistoryView {
     history: History,
-    props: Props,
 }
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -24,23 +23,11 @@ impl Component for HistoryView {
     fn create(ctx: &Context<Self>) -> Self {
         let history = History::from(&ctx.props().gratitude_list, js_local_offset());
 
-        Self {
-            history,
-            props: ctx.props().clone(),
-        }
+        Self { history }
     }
 
     fn update(&mut self, _: &Context<Self>, msg: Self::Message) -> bool {
         match msg {}
-    }
-
-    fn changed(&mut self, ctx: &Context<Self>) -> bool {
-        if &self.props != ctx.props() {
-            self.props = ctx.props().clone();
-            true
-        } else {
-            false
-        }
     }
 
     fn view(&self, _: &Context<Self>) -> Html {

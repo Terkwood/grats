@@ -87,12 +87,6 @@ impl Component for App {
         true
     }
 
-    //TODO is it ok to gag this?
-    /*
-        fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-            false
-        }
-    */
     fn view(&self, _: &Context<Self>) -> Html {
         html! {
             <>
