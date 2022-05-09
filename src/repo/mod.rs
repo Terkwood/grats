@@ -1,24 +1,18 @@
 use crate::model::*;
-use yew::format::Json;
-use yew::services::storage::{Area, StorageService};
+use gloo_storage::{LocalStorage, Storage};
 
 const GRATITUDE_LIST_KEY: &str = "gratitude_list";
 const ENTRY_BUTTONS_KEY: &str = "entry_buttons";
 
-pub struct GratitudeListRepo {
-    pub storage_service: StorageService,
-}
+pub struct GratitudeListRepo;
 
 impl GratitudeListRepo {
     pub fn new() -> Self {
-        let storage_service =
-            StorageService::new(Area::Local).expect("storage was disabled by the user");
-
-        Self { storage_service }
+        Self
     }
 
     pub fn read(&self) -> GratitudeList {
-        if let Json(Ok(restored_model)) = self.storage_service.restore(GRATITUDE_LIST_KEY) {
+        if let Ok(restored_model) = LocalStorage::get(GRATITUDE_LIST_KEY) {
             restored_model
         } else {
             GratitudeList::empty()
@@ -26,25 +20,20 @@ impl GratitudeListRepo {
     }
 
     pub fn save(&mut self, grat_list: &GratitudeList) {
-        let value = Json(grat_list);
-        self.storage_service.store(GRATITUDE_LIST_KEY, value)
+        let value = grat_list;
+        LocalStorage::set(GRATITUDE_LIST_KEY, value).expect("storage fail")
     }
 }
 
-pub struct EntryButtonsRepo {
-    pub storage_service: StorageService,
-}
+pub struct EntryButtonsRepo;
 
 impl EntryButtonsRepo {
     pub fn new() -> Self {
-        let storage_service =
-            StorageService::new(Area::Local).expect("storage was disabled by the user");
-
-        Self { storage_service }
+        Self
     }
 
     pub fn read(&self) -> EntryButtonCollection {
-        if let Json(Ok(restored_model)) = self.storage_service.restore(ENTRY_BUTTONS_KEY) {
+        if let Ok(restored_model) = LocalStorage::get(ENTRY_BUTTONS_KEY) {
             restored_model
         } else {
             EntryButtonCollection::new()
@@ -52,7 +41,6 @@ impl EntryButtonsRepo {
     }
 
     pub fn save(&mut self, buttons: &EntryButtonCollection) {
-        let value = Json(buttons);
-        self.storage_service.store(ENTRY_BUTTONS_KEY, value)
+        LocalStorage::set(ENTRY_BUTTONS_KEY, buttons).expect("buttons save")
     }
 }

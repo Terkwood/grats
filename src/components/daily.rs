@@ -1,10 +1,11 @@
 use crate::model::*;
 use crate::time::js_utc_now;
+use web_sys::HtmlTextAreaElement;
+use yew::events::InputEvent;
 use yew::prelude::*;
+use yew::Context;
 
 pub struct Daily {
-    link: ComponentLink<Self>,
-    props: Props,
     text_area: String,
     mode: Mode,
 }
@@ -13,6 +14,7 @@ pub enum Msg {
     SubmitEntry(Emoji),
     TextAreaUpdated(String),
     FocusInput,
+    IgnoreThis,
 }
 
 #[derive(PartialEq)]
@@ -25,7 +27,7 @@ pub enum Mode {
 pub struct Props {
     pub gratitude_list: GratitudeList,
     pub entry_buttons: EntryButtonCollection,
-    pub add_entry: Callback<Entry>
+    pub add_entry: Callback<Entry>,
 }
 
 impl Component for Daily {
@@ -33,16 +35,14 @@ impl Component for Daily {
 
     type Properties = Props;
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+    fn create(_: &Context<Self>) -> Self {
         Self {
-            props,
-            link,
             text_area: String::new(),
             mode: Mode::Default,
         }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::FocusInput => {
                 self.mode = Mode::Input;
@@ -51,7 +51,7 @@ impl Component for Daily {
             Msg::SubmitEntry(emoji) => {
                 self.mode = Mode::Default;
                 if !self.text_area.is_empty() {
-                    self.props.add_entry.emit(Entry {
+                    ctx.props().add_entry.emit(Entry {
                         emoji,
                         text: self.text_area.clone(),
                         time: js_utc_now(),
@@ -60,25 +60,17 @@ impl Component for Daily {
                     self.text_area.clear()
                 };
             }
+            _ => (),
         }
 
         true
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        if self.props != props {
-            self.props = props;
-            true
-        } else {
-            false
-        }
-    }
-
-    fn view(&self) -> Html {
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <>
-                { self.view_input() }
-                { self.view_todays_list() }
+                { self.view_input(ctx) }
+                { self.view_todays_list(ctx) }
             </>
         }
     }
@@ -88,8 +80,8 @@ const GRID_TEMPLATE_ROWS_WAITING: u8 = 6;
 const GRID_TEMPLATE_ROWS_FOCUS: u8 = 7;
 
 impl Daily {
-    pub fn view_input(&self) -> Html {
-        let entry_buttons = self.props.entry_buttons.all();
+    pub fn view_input(&self, ctx: &Context<Self>) -> Html {
+        let entry_buttons = ctx.props().entry_buttons.all();
         let (input_grid_id, input_grid_rows) = if self.mode == Mode::Input {
             ("inputgridfocus", GRID_TEMPLATE_ROWS_FOCUS)
         } else {
@@ -97,26 +89,32 @@ impl Daily {
         };
         html! {
             <div
-                id=input_grid_id
-                style=format!("grid-template: repeat({}, 1fr) / repeat({}, 1fr);", input_grid_rows, entry_buttons.len())
+                id={input_grid_id}
+                style={format!("grid-template: repeat({}, 1fr) / repeat({}, 1fr);", input_grid_rows, entry_buttons.len())}
                 >
-                <div style=format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)>
+                <div style={format!("grid-column: 1 / span {}; grid-row: 1 / span {};", entry_buttons.len(), GRID_TEMPLATE_ROWS_WAITING)}>
                     <textarea
-                        value=&self.text_area
-                        onfocus=self.link.callback(|_| Msg::FocusInput)
-                        oninput=self.link.callback(|e: InputData| Msg::TextAreaUpdated(e.value))
+                        value={self.text_area.clone()}
+                        onfocus={ctx.link().callback(|_| Msg::FocusInput)}
+                        oninput={ctx.link().callback(|e: InputEvent|
+                            if let Some(input) = e.target_dyn_into::<HtmlTextAreaElement>() {
+                                Msg::TextAreaUpdated(input.value())
+                            }  else {
+                                Msg::IgnoreThis
+                            }
+                        )}
                         placeholder="What are you grateful for?">
                     </textarea>
                 </div>
-                { entry_buttons.iter().map(|emoji| self.view_entry_button(emoji)).collect::<Html>()}
+                { entry_buttons.iter().map(|emoji| self.view_entry_button(emoji,ctx)).collect::<Html>()}
             </div>
         }
     }
-    fn view_todays_list(&self) -> Html {
+    fn view_todays_list(&self, ctx: &Context<Self>) -> Html {
         html! {
             <div class="center">
                 <ul class="gratitude">
-                    { self.props.gratitude_list.entries.iter().map(|entry| self.view_entry(entry.clone())).collect::<Html>() }
+                    { ctx.props().gratitude_list.entries.iter().map(|entry| self.view_entry(entry.clone())).collect::<Html>() }
                 </ul>
             </div>
         }
@@ -128,7 +126,7 @@ impl Daily {
             </li>
         }
     }
-    fn view_entry_button(&self, emoji: &Emoji) -> Html {
+    fn view_entry_button(&self, emoji: &Emoji, ctx: &Context<Self>) -> Html {
         let emc = emoji.clone();
         let emc2 = emoji.clone();
         html! {
@@ -136,11 +134,11 @@ impl Daily {
                     <button
                         class="entrybutton"
                         onclick=
-                            self.link
+         { ctx.link()
                                 .callback(
                                     move |_| Msg::SubmitEntry(
                                         emc.clone()
-                                    ))>
+                                    ))}>
                         { emc2.0 }
                     </button>
                 </div>

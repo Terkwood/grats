@@ -11,5 +11,5 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
-    yew::App::<components::App>::new().mount_to_body();
+    yew::start_app::<components::App>();
 }

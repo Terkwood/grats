@@ -2,10 +2,9 @@ use crate::model::*;
 use crate::time::*;
 use chrono::prelude::*;
 use yew::prelude::*;
+use yew::Context;
 pub struct HistoryView {
     history: History,
-    props: Props,
-    _link: ComponentLink<Self>,
 }
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -21,30 +20,17 @@ impl Component for HistoryView {
 
     type Properties = Props;
 
-    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        let history = History::from(&props.gratitude_list, js_local_offset());
+    fn create(ctx: &Context<Self>) -> Self {
+        let history = History::from(&ctx.props().gratitude_list, js_local_offset());
 
-        Self {
-            history,
-            props,
-            _link,
-        }
+        Self { history }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _: &Context<Self>, msg: Self::Message) -> bool {
         match msg {}
     }
 
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        if self.props != props {
-            self.props = props;
-            true
-        } else {
-            false
-        }
-    }
-
-    fn view(&self) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         let payload = &self.history.days;
         if payload.is_empty() {
             html! { <div id="history"> <p> { EMPTY_MSG } </p> </div> }

@@ -3,6 +3,7 @@ use crate::model::*;
 use crate::repo::*;
 use crate::time::{js_local_offset, js_utc_now};
 use yew::prelude::*;
+use yew::Context;
 
 pub struct App {
     page: Page,
@@ -29,19 +30,18 @@ pub enum Msg {
     ResetEntryButtons,
 }
 
-
 impl Component for App {
     type Message = Msg;
     type Properties = ();
 
-    fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let nav_to = Some(link.callback(|page| Msg::NavigateTo(page)));
-        
-        let add_entry = Some(link.callback(|entry| Msg::AddEntry(entry)));
+    fn create(ctx: &Context<Self>) -> Self {
+        let nav_to = Some(ctx.link().callback(|page| Msg::NavigateTo(page)));
 
-        let add_entry_button = Some(link.callback(|emoji| Msg::AddEntryButton(emoji)));
-        let del_entry_button = Some(link.callback(|emoji| Msg::DeleteEntryButton(emoji)));
-        let reset_entry_buttons = Some(link.callback(|_| Msg::ResetEntryButtons));
+        let add_entry = Some(ctx.link().callback(|entry| Msg::AddEntry(entry)));
+
+        let add_entry_button = Some(ctx.link().callback(|emoji| Msg::AddEntryButton(emoji)));
+        let del_entry_button = Some(ctx.link().callback(|emoji| Msg::DeleteEntryButton(emoji)));
+        let reset_entry_buttons = Some(ctx.link().callback(|_| Msg::ResetEntryButtons));
 
         let gratitude_list_repo = GratitudeListRepo::new();
         let gratitude_list = gratitude_list_repo.read();
@@ -63,7 +63,7 @@ impl Component for App {
         }
     }
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+    fn update(&mut self, _: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::AddEntry(entry) => {
                 self.gratitude_list.add(entry);
@@ -87,11 +87,7 @@ impl Component for App {
         true
     }
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        false
-    }
-
-    fn view(&self) -> Html {
+    fn view(&self, _: &Context<Self>) -> Html {
         html! {
             <>
             { self.view_nav() }
@@ -145,6 +141,5 @@ impl App {
                 nav_to={self.nav_to.as_ref().expect("nav cb")}
             />
         }
-
     }
 }

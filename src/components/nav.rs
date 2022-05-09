@@ -1,10 +1,8 @@
 use super::Page;
 use yew::prelude::*;
+use yew::Context;
 
-pub struct Nav {
-    pub link: ComponentLink<Self>,
-    pub props: Props,
-}
+pub struct Nav;
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -18,45 +16,34 @@ pub struct NavMsg(Page);
 impl Component for Nav {
     type Message = NavMsg;
     type Properties = Props;
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self { link, props }
+    fn create(_: &Context<Self>) -> Self {
+        Self {}
     }
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        self.props.nav_to.emit(msg.0);
+    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
+        ctx.props().nav_to.emit(msg.0);
         false
     }
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        if self.props != props {
-            self.props = props;
-            true
-        } else {
-            false
-        }
-    }
-    fn view(&self) -> Html {
-        
+    fn view(&self, ctx: &Context<Self>) -> Html {
         html! {
             <div id="nav">
-                { self.span_element("Daily", Page::Daily) } 
-                { " | " } 
-                { self.span_element("History", Page::History) } 
-                { " | " } 
-                { self.span_element("Config", Page::Config) }
+                { self.span_element("Daily", Page::Daily, ctx) }
+                { " | " }
+                { self.span_element("History", Page::History, ctx) }
+                { " | " }
+                { self.span_element("Config", Page::Config, ctx) }
             </div>
         }
     }
-
 }
 
 impl Nav {
-
-    fn span_element(&self, text: &str, target: Page) -> Html {
-        if self.props.page == target {
-            html!{ <span><strong>{ text }</strong></span>}
+    fn span_element(&self, text: &str, target: Page, ctx: &Context<Self>) -> Html {
+        if ctx.props().page == target {
+            html! { <span><strong>{ text }</strong></span>}
         } else {
-            html!{ 
+            html! {
                 <span
-                    onclick = self.link.callback(move|_| NavMsg(target))>
+                    onclick = {ctx.link().callback(move|_| NavMsg(target))}>
                     { text }
                 </span>
             }
