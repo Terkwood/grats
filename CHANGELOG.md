@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/Terkwood/grats/compare/v1.0.2...v1.0.3) (2023-12-30)
+
+
+### Bug Fixes
+
+* squash warnings ([344b034](https://github.com/Terkwood/grats/commit/344b034d1dbce1f7df56f32a5dbf75751d829102))
+
 ### [1.0.2](https://github.com/Terkwood/grats/compare/v1.0.1...v1.0.2) (2023-12-30)
 
 
