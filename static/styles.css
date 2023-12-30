@@ -62,7 +62,7 @@ ul {
 }
 
 #inputgridfocus {
-  height: 80vh;
+  height: 45vh;
   display: grid;
   grid-gap: 5px;
   grid-auto-flow: row;
