@@ -37,16 +37,18 @@ impl GratitudeList {
 
     pub fn today(&self, now: UtcMillis, offset: FixedOffset) -> Self {
         let local_now_date = Utc
-            .timestamp_millis(now.0 as i64)
+            .timestamp_millis_opt(now.0 as i64)
+            .unwrap()
             .with_timezone(&offset)
-            .date();
+            .date_naive();
         let entries = self
             .entries
             .iter()
             .filter(|entry| {
-                Utc.timestamp_millis(entry.time.0 as i64)
+                Utc.timestamp_millis_opt(entry.time.0 as i64)
+                    .unwrap()
                     .with_timezone(&offset)
-                    .date()
+                    .date_naive()
                     == local_now_date
             })
             .cloned()

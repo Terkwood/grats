@@ -59,7 +59,8 @@ impl HistoryView {
 
     fn view_entry(&self, entry: &Entry) -> Html {
         let local_datetime = Utc
-            .timestamp_millis(entry.time.0 as i64)
+            .timestamp_millis_opt(entry.time.0 as i64)
+            .unwrap()
             .with_timezone(&js_local_offset());
         let date_string: String = local_datetime.format("%R").to_string();
 

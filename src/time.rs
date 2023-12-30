@@ -7,7 +7,7 @@ pub fn js_utc_now() -> UtcMillis {
 
 /// computes a western-biased FixedOffset using the JS runtime
 pub fn js_local_offset() -> FixedOffset {
-    FixedOffset::west(js_local_offset_seconds())
+    FixedOffset::west_opt(js_local_offset_seconds()).unwrap()
 }
 
 const JS_CHRONO_OFFSET_COEFF: i32 = 60;

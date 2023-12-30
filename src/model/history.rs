@@ -10,16 +10,17 @@ pub struct History {
 
 #[derive(Ord, Eq, PartialOrd, PartialEq, Debug, Clone)]
 pub struct Day {
-    pub date: Date<FixedOffset>,
+    pub date: NaiveDate,
     pub gratitude_list: GratitudeList,
 }
 
 impl History {
     pub fn from(list: &GratitudeList, offset: FixedOffset) -> Self {
         let mut days: Vec<Day> = group_by(&list.entries, |mr| {
-            Utc.timestamp_millis(mr.time.0 as i64)
+            Utc.timestamp_millis_opt(mr.time.0 as i64)
+                .unwrap()
                 .with_timezone(&offset)
-                .date()
+                .date_naive()
         })
         .iter()
         .map(|d| {
