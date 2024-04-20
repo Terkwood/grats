@@ -92,6 +92,8 @@ const ALLOWED_EMOJIS: &[&str] = &[
     "🌎",
     "🌍",
     "🌏",
+    "⚧",
+    "🔒"
 ];
 
 impl EntryButtonCollection {
